@@ -1,0 +1,20 @@
+name: Deploy code to Databricks
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: databricks/setup-cli@main
+      - name: Copy code to Databricks
+        env:
+          DATABRICKS_HOST: ${{ vars.DATABRICKS_HOST }}
+          DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+        run: |
+          USER_NAME="$(databricks current-user me --output json | jq -r .userName)"
+          databricks sync . "/Users/${USER_NAME}/Pytest-CICD"
