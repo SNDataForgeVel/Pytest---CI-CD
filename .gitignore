@@ -1,0 +1,9 @@
+# Ignore this JSON file
+SampleFile/Products_Formatted.json
+
+# Ignore Python cache files
+__pycache__/
+*.pyc
+.venv
+AzuriteConfig
+__azurite_db_table__.json
