@@ -22,7 +22,7 @@ def test_filterrows_removes_null_product_names_from_sample(spark):
     sample_file = (
         Path(__file__).resolve().parents[1]
         / "SampleFile"
-        / "Products_Formatted.json"
+        / "Products.json"
     )
 
     raw = spark.read.option("multiLine", True).json(str(sample_file))
